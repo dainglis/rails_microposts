@@ -1,5 +1,10 @@
-<h1>New User</h1>
+<% provide(:title, 'Sign up') %>
+<div class="center jumbotron">
+  <h1><%= yield(:title) %></h1>
+</div>
 
-<%= render 'form', user: @user %>
+<div class="center">
+  <%= render 'form', user: @user %>
+</div>
 
-<%= link_to 'Back', users_path %>
+<% link_to 'Back', users_path %>
