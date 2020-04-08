@@ -1,8 +1,14 @@
+/* This global custom.scss stylesheet is used for the entire 
+ * Microposts App tutorial. Some styling has been copied over from 
+ * scaffolds.scss, which has been excluded due to overlap 
+ */
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
 /* colour variables */
 $light-grey: #777;
+$grey-blue: #3d3d72;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -27,6 +33,11 @@ $light-grey: #777;
 
 body {
   padding-top: 60px;
+  background-color: #fff;
+  color: #333;
+  margin: 33px;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
 }
 
 section {
@@ -45,6 +56,21 @@ textarea {
   }
 }
 
+a {
+  color: $grey-blue;
+  &:hover {
+    color: $light-grey;
+    text-decoration: none;
+  }
+}
+
+th {
+  padding-bottom: 5px;
+}
+
+td {
+  padding: 0 5px 7px;
+}
 
 
 /* typography */
@@ -191,3 +217,5 @@ footer {
     }
   }
 }
+
+
