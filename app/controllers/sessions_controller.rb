@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :not_logged_in, only: :new
 
   def new
   end
@@ -26,4 +27,10 @@ class SessionsController < ApplicationController
     log_out if logged_in?
     redirect_to root_url
   end
+
+  private
+    # Logged in users cannot fill in the signup
+    def not_logged_in
+      redirect_to user_path(current_user) if logged_in?
+    end
 end

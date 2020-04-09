@@ -27,7 +27,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
                              password_confirmation: 'foobarbaz' } }
     end
 
-    assert_redirected_to user_url(User.last)
+    #assert_redirected_to user_url(User.last)
+    assert_redirected_to root_url
   end
 
   test "should show user" do
@@ -104,4 +105,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to root_url
   end
+
+  test "should not allow signup if logged in" do
+    log_in_as(@user)
+    get signup_path
+    assert_redirected_to root_url
+  end
 end
+

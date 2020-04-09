@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
   resources :microposts
   resources :users
+  resources :account_activations, only: [:edit]
   
   # Set the root of the webserver 
   root 'static_pages#home'

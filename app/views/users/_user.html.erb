@@ -1,10 +1,12 @@
-<li>
-  <%= gravatar_for user, size: 50 %>
-  <%= link_to user.name, user %>
-  <% if current_user.admin? && !current_user?(user) %>
-    ( user #<%= user.id %>, 
-    <%= link_to "delete", user, method: :delete,
-                data: { confirm: "Confirm deleting user '#{user.name}'?" } %>
-    ) 
-  <% end %>
-</li>
+<% if user.activated? %>
+  <li>
+    <%= gravatar_for user, size: 50 %>
+    <%= link_to user.name, user %>
+    <% if current_user.admin? && !current_user?(user) %>
+      ( user #<%= user.id %>, 
+      <%= link_to "delete", user, method: :delete,
+                  data: { confirm: "Confirm deleting user '#{user.name}'?" } %>
+      ) 
+    <% end %>
+  </li>
+<% end %>

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   # before filters
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :not_logged_in, only: :new
   before_action :logged_in_user, only: [:edit, :update, :index, :destroy]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
@@ -14,6 +15,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    redirect_to root_url and return unless @user.activated?
   end
 
   # GET /users/new
@@ -32,12 +34,16 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        log_in @user
-        remember @user
 
-        flash[:success] = "Welcome to Microposts!"
-        format.html { redirect_to @user }
-        format.json { render :show, status: :created, location: @user }
+        @user.send_activation_email
+        flash[:info] = "Please check your email to activate your account"
+        format.html { redirect_to root_url }
+        
+        #log_in @user
+        #remember @user
+        #flash[:success] = "Welcome to Microposts!"
+        #format.html { redirect_to @user }
+        #format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -93,6 +99,11 @@ class UsersController < ApplicationController
         store_location
         redirect_to login_url
       end
+    end
+
+    # Logged in users cannot fill in the signup
+    def not_logged_in
+      redirect_to root_url if logged_in?
     end
 
     def correct_user 
