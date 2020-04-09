@@ -1,4 +1,6 @@
 <% provide(:title, 'Sign up') %>
+<% provide(:form_submit_label, 'Create account') %>
+
 <h1><%= yield(:title) %></h1>
 
 <div class="row">
@@ -7,4 +9,4 @@
   </div>
 </div>
 
-<% link_to 'Back', users_path %>
+<% link_to 'Back', root_path %>

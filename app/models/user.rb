@@ -22,10 +22,9 @@ class User < ApplicationRecord
 
     has_secure_password
     validates :password,
-        length: { minimum: 8 }
+        length: { minimum: 8 },
+        allow_nil: true
 
-    validates :password_confirmation,
-        presence: true
 
     # Forces the new user's email to be saved as lowercase
     before_save { self.email = email.downcase }
