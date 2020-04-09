@@ -10,6 +10,8 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       # log in and redirect
       log_in user
+      params[:session][:remember_me] == '1' ? remember(user)
+                                            : forget(user)
       flash[:success] = "Login successful"
       redirect_to user
 
@@ -21,7 +23,7 @@ class SessionsController < ApplicationController
 
   # Destroy the current user session
   def destroy
-    log_out
+    log_out if logged_in?
     redirect_to root_url
   end
 end

@@ -29,6 +29,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         log_in @user
+        remember @user
 
         flash[:success] = "Welcome to Microposts!"
         format.html { redirect_to @user }
