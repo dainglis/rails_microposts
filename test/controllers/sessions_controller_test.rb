@@ -14,4 +14,11 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to user_path(@user)
   end
 
+  test "should not log in when not activated" do
+    @user = users(:inactive)
+
+    log_in_as(@user)
+    assert_redirected_to root_url
+  end
+
 end

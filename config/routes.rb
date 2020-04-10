@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  get 'password_resets/new'
+  get 'password_resets/edit'
   resources :microposts
   resources :users
   resources :account_activations, only: [:edit]
+  resources :password_resets,     only: [:new, :create, :edit, :update]
   
   # Set the root of the webserver 
   root 'static_pages#home'
