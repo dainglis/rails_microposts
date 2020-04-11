@@ -16,6 +16,8 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     redirect_to root_url and return unless @user.activated?
+
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   # GET /users/new
@@ -91,15 +93,6 @@ class UsersController < ApplicationController
                                    :password_confirmation)
     end
 
-    # Confirms a logged in user.
-    # Redirects to login page
-    def logged_in_user
-      unless logged_in?
-        flash[:danger] = "Please log in"
-        store_location
-        redirect_to login_url
-      end
-    end
 
     # Logged in users cannot fill in the signup
     def not_logged_in

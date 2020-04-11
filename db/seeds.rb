@@ -28,3 +28,12 @@ User.create! name: "Administrator",
                activated: true,
                activated_at: Time.zone.now
 end
+
+
+# Generate random micropost data
+users = User.order(:created_at).take(6)
+50.times do
+  content = Faker::Lorem.sentence(word_count: 5)
+  users.each { |user| user.microposts.create!(content: content) }
+end
+

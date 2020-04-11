@@ -6,6 +6,7 @@ class UserTest < ActiveSupport::TestCase
                      email: "test@example.com",
                      password: "hunter2",
                      password_confirmation: "hunter2")
+
   end
 
   test "password non empty" do
@@ -20,5 +21,18 @@ class UserTest < ActiveSupport::TestCase
 
   test "authenticated? should return false for a user with nil digest" do
     assert_not @user.authenticated?(:remember, '')
+  end
+
+  test "associated microposts should be destroyed" do
+    @other = User.new(name: "Test User", 
+                     email: "test@example.com",
+                     password: "loremipsum",
+                     password_confirmation: "loremipsum")
+    @other.save
+
+    @other.microposts.create!(content: "Lipsum")
+    assert_difference 'Micropost.count', -1 do
+      @other.destroy
+    end
   end
 end

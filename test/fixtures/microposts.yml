@@ -1,9 +1,16 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  content: MyText
-  user_id: 1
+  content: Lorem ipsum
+  user: one
+  created_at: <%= 1.year.ago %>
 
 two:
-  content: MyText
-  user_id: 1
+  content: Dolor sit amet
+  user: one
+  created_at: <%= 9.minutes.ago %>
+
+most_recent:
+  content: Neque porro quisquam
+  user: one
+  created_at: <%= 8.minutes.ago %>
