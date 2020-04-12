@@ -20,6 +20,7 @@ gem 'bootsnap',                 '1.4.5', require: false
 
 group :production do
   gem 'pg', '1.1.4'
+  gem 'aws-sdk-s3', '1.46.0', require: false
 end
 
 group :development, :test do
