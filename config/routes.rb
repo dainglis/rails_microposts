@@ -5,6 +5,13 @@ Rails.application.routes.draw do
   resources :microposts,          only: [:create, :destroy]
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
+  resources :relationships,       only: [:create, :destroy]
+
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   
   # Set the root of the webserver 
   root 'static_pages#home'

@@ -6,17 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# Create an administrator user
-User.create! name: "Administrator",
-             email: "admin@railstutorial.org", 
-             password: "password", 
-             password_confirmation: "password",
-             admin: true,
-             activated: true,
-             activated_at: Time.zone.now
 
-# Generate a bunch of additional users
-99.times do |n| 
+# Generate a bunch of test users
+40.times do |n| 
   name = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org" 
   password = "password"
@@ -29,11 +21,28 @@ User.create! name: "Administrator",
                activated_at: Time.zone.now
 end
 
+# Create an administrator user
+User.create! name: "SysAdmin",
+             email: "admin@railstutorial.org", 
+             password: "insecurepassword", 
+             password_confirmation: "insecurepassword",
+             admin: true,
+             activated: true,
+             activated_at: Time.zone.now
+
 
 # Generate random micropost data
 users = User.order(:created_at).take(6)
-50.times do
+35.times do
   content = Faker::Lorem.sentence(word_count: 5)
   users.each { |user| user.microposts.create!(content: content) }
 end
 
+
+# Create following relationships
+users = User.all
+user = users.first
+following = users[2..30]
+followers = users[3..22]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }

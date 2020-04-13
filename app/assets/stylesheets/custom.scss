@@ -247,6 +247,44 @@ aside {
   margin-top: 15px;
 }
 
+.stats {
+  overflow: auto;
+  margin-top: 0;
+  padding: 0;
+  display: block;
+  a {
+    padding: 0 5px;
+    border-left: 1px solid $light-grey;
+    color: grey;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: $light-grey;
+    }
+  }
+  strong {
+    padding-right: 10px;
+  }
+}
+
+.user_avatars {
+  overflow: auto;
+  margin-top: 10px;
+  .gravatar {
+    margin: 1px;
+  }
+  a {
+    padding: 0px;
+  }
+}
+
+.users.follow {
+  padding: 0;
+}
+
 
 
 /* header */
