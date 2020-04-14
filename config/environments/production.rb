@@ -63,7 +63,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # SendGrid mailer settings
-  host = 'ancient-eyrie-38055.herokuapp.com'
+  host = 'dinglis-mbradshaw-a04.herokuapp.com'
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
       :address => 'smtp.sendgrid.net',
