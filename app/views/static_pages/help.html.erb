@@ -1,4 +1,17 @@
 <% provide(:title, "Help") %>
 
-<h1><%= yield(:title) %></h1>
-<p>Find me in app/views/static_pages/help.html.erb</p>
+<div class="row">
+  <h1><%= yield(:title) %></h1>
+
+  <p>
+    <%= link_to "Sign up", signup_path %> for an account if you do not have one. You will have to activate it with your email account.
+  </p>
+
+  <p>
+    <%= link_to "Log in", login_path %> if you have an existing account. 
+    You will be able to view and follow other users, and post text and images.
+
+  </p>
+
+
+</div>

@@ -1,4 +1,19 @@
 <% provide(:title, "About") %>
 
-<h1><%= yield(:title) %></h1>
-<p>Find me in app/views/static_pages/about.html.erb</p>
+<div class="row center">
+  <h1><%= yield(:title) %></h1>
+
+  <section>
+    The "Microposts" Ruby on Rails webapp was built following the 
+    <%= link_to "Ruby on Rails tutorial", 'https://railstutorial.org' %>
+    by Michael Hartl.
+  </section>
+
+  <section>
+    Production environment hosted with 
+    <%= link_to "Heroku", 'https://heroku.com' %>
+  </section>
+  <%= link_to image_tag("heroku.png", alt: "Heroku logo", width: 200),
+      'https://heroku.com' %>
+</div>
+
